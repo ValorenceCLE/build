@@ -1,0 +1,27 @@
+/dts-v1/;
+
+/ {
+
+	fragment@0 {
+		target-path = "/aliases";
+
+		__overlay__ {
+			i2c3 = "/soc/i2c@5002c00";
+		};
+	};
+
+	fragment@1 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <0xffffffff>;
+			status = "okay";
+		};
+	};
+
+	__fixups__ {
+		i2c3 = "/fragment@1:target:0";
+		i2c3_ph_pins = "/fragment@1/__overlay__:pinctrl-0:0";
+	};
+};
